@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>技術・家庭科（家庭分野）期末テスト直前総仕上げ</title>
+    <style>
+        :root {
+            --primary-color: #2b6cb0;
+            --secondary-color: #319795;
+            --accent-color: #dd6b20;
+            --bg-color: #f7fafc;
+            --card-bg: #ffffff;
+            --text-color: #2d3748;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 4px solid var(--primary-color);
+            padding-bottom: 20px;
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        header p {
+            color: #718096;
+            margin: 10px 0 0 0;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-left: 5px solid var(--primary-color);
+            padding-left: 10px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        /* まとめセクション（アコーディオン） */
+        .summary-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+            overflow: hidden;
+        }
+
+        summary {
+            padding: 15px 20px;
+            font-weight: bold;
+            background-color: #edf2f7;
+            cursor: pointer;
+            outline: none;
+            user-select: none;
+            transition: background-color 0.2s;
+        }
+
+        summary:hover {
+            background-color: #e2e8f0;
+        }
+
+        .summary-content {
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .summary-content ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .summary-content li {
+            margin-bottom: 10px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            border-radius: 4px;
+            color: white;
+            margin-right: 5px;
+        }
+        .badge-red { background-color: #e53e3e; }
+        .badge-blue { background-color: #3182ce; }
+
+        /* 問題集セクション */
+        .quiz-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        /* チェックボックスのアニメーション用スタイル */
+        .quiz-item.completed {
+            background-color: #ebf8ff;
+            border-color: #bee3f8;
+            opacity: 0.85;
+        }
+
+        .quiz-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .custom-checkbox {
+            width: 22px;
+            height: 22px;
+            margin-top: 3px;
+            cursor: pointer;
+            accent-color: var(--secondary-color);
+        }
+
+        .question-text {
+            font-weight: bold;
+            font-size: 1.1rem;
+            flex: 1;
+        }
+
+        .options-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 15px 37px;
+        }
+
+        .options-list li {
+            margin-bottom: 8px;
+            padding: 8px 12px;
+            background-color: #f7fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        /* 答えと解説のトグルボタン */
+        .ans-btn {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-left: 37px;
+            transition: background-color 0.2s;
+        }
+
+        .ans-btn:hover {
+            background-color: #285e61;
+        }
+
+        .explanation-box {
+            display: none;
+            margin-top: 15px;
+            margin-left: 37px;
+            padding: 15px;
+            background-color: #f0fff4;
+            border-left: 4px solid #38a169;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .explanation-box.show {
+            display: block;
+        }
+
+        .ans-title {
+            font-weight: bold;
+            color: #276749;
+            margin-bottom: 5px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            color: #a0aec0;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>家庭分野 期末テスト直前総仕上げ</h1>
+        <p>内容のまとめ ＆ 弱点克服チェック問題集</p>
+    </header>
+
+    <h2>■ 内容まとめ（クリックして開閉）</h2>
+    
+    <div class="summary-card">
+        <details>
+            <summary>1. 人間の発達区分（ライフステージ）</summary>
+            <div class="summary-content">
+                <ul>
+                    <li><span class="badge badge-red">新生児期</span> 生まれてから最初の4週間（約1か月）。外界に適応するための時期。</li>
+                    <li><span class="badge badge-red">乳児期</span> 出生から1歳未満。お乳を飲む時期。</li>
+                    <li><span class="badge badge-red">幼児期</span> 1歳から小学校入学まで。心身が総合的に発達し、遊びを中心に生活する時期。</li>
+                    <li><span class="badge badge-red">児童期</span> 小学校入学から小学校卒業まで。</li>
+                    <li><span class="badge badge-red">青年期</span> 中学生から20代前半頃まで。自立に向けた準備期間。</li>
+                </ul>
+            </div>
+        </details>
+    </div>
+
+    <div class="summary-card">
+        <details>
+            <summary>2. 幼児の生活と遊び・食事</summary>
+            <div class="summary-content">
+                <ul>
+                    <li><strong>遊びの変化：</strong> 1〜2歳（1人遊び・大人と遊ぶ） ➔ 3〜4歳（友達のそばで同じことをして遊ぶ/自己中心的） ➔ 5〜6歳（集団遊び・ルールを理解し工夫する）。</li>
+                    <li><strong>見立て遊び：</strong> 段ボールをお風呂にするなど、目の前にないものを思い浮かべる遊び。認知や想像力の発達を示す。</li>
+                    <li><strong>幼児の胃の特徴：</strong> 新生児の胃の容量はわずか<strong>約50ml</strong>で形は<strong>横向き</strong>。幼児期は大人の約2分の1（約750ml）になり、形状も<strong>縦向き</strong>へと変化する。一度に多く食べられないため<strong>間食（おやつ）</strong>での栄養補給が必須。</li>
+                </ul>
+            </div>
+        </details>
+    </div>
+
+    <div class="summary-card">
+        <details>
+            <summary>3. 消費者の権利と責任・関連法律</summary>
+            <div class="summary-content">
+                <ul>
+                    <li><strong>8つの権利：</strong> 安全を求める権利、知らされる権利、選択する権利、意見が反映される権利 など。</li>
+                    <li><strong>5つの責任：</strong> 批判的意識を持つ責任（情報をうのみにしない）、主張し行動する責任、連帯する責任（消費者同士協力する）、環境への配慮をする責任、社会的弱者に配慮する責任。</li>
+                    <li><strong>特定商取引法：</strong> 強引な勧誘などの悪質な<span class="badge badge-blue">売り方</span>から消費者を守る法律。クーリング・オフなどを規定。</li>
+                    <li><strong>製造物責任法（PL法）：</strong> 引き渡された<span class="badge badge-blue">モノ（製品の欠陥）</span>によってケガなどをした際、過失がなくてもメーカーに損害賠償を請求できる法律。</li>
+                </ul>
+            </div>
+        </details>
+    </div>
+
+    <h2>■ 復習問題集（理解度チェック）</h2>
+    <p style="color: #718096; margin-left: 5px;">※ 解けたら左のチェックボックスをオンにして、復習済みにしていきましょう！</p>
+
+    <div class="quiz-item" id="q1">
+        <div class="quiz-header">
+            <input type="checkbox" class="custom-checkbox" onclick="toggleComplete('q1')">
+            <div class="question-text">【問1】小学校1年生（6歳）になったばかりの児童が該当する、人間の発達区分として正しいものはどれか。</div>
+        </div>
+        <ul class="options-list">
+            <li>ア．乳児期</li>
+            <li>イ．幼児期</li>
+            <li>ウ．児童期</li>
+            <li>エ．青年期</li>
+        </ul>
+        <button class="ans-btn" onclick="toggleAns('ans1')">答えと解説を見る</button>
+        <div class="explanation-box" id="ans1">
+            <div class="ans-title">正解：ウ．児童期</div>
+            <p>児童期は「小学校入学から小学校卒業まで」を指します。出生〜1歳未満が「乳児期」、1歳〜小学校入学までが「幼児期」です。漢字の意味と年齢の区切りを確実に覚えましょう。</p>
+        </div>
+    </div>
+
+    <div class="quiz-item" id="q2">
+        <div class="quiz-header">
+            <input type="checkbox" class="custom-checkbox" onclick="toggleComplete('q2')">
+            <div class="question-text">【問2】幼児期の食事に関する説明として、形状や体内時計の観点から正しいものはどれか。</div>
+        </div>
+        <ul class="options-list">
+            <li>ア．生まれたときの胃は縦長だが、成長に伴って横向きに変化する。</li>
+            <li>イ．幼児期の胃は大人の半分程度しかなく、一度に多く食べられないため間食が必要である。</li>
+            <li>ウ．新生児期の胃の容量は約500mlである。</li>
+            <li>エ．幼児の体内時計は小学校に入学してから作られ始める。</li>
+        </ul>
+        <button class="ans-btn" onclick="toggleAns('ans2')">答えと解説を見る</button>
+        <div class="explanation-box" id="ans2">
+            <div class="ans-title">正解：イ．幼児期の胃は大人の半分程度しかなく…</div>
+            <p>新生児の胃は横向きで容量は約50mlしかありません。成長に伴い大人の半分程度（縦長）になりますが、まだ一度にたくさん食べられないため、3回の食事を補う「間食（おやつ）」が必要になります。また、体内時計は生後3〜4か月頃から作られ始めます。</p>
+        </div>
+    </div>
+
+    <div class="quiz-item" id="q3">
+        <div class="quiz-header">
+            <input type="checkbox" class="custom-checkbox" onclick="toggleComplete('q3')">
+            <div class="question-text">【問3】テレビの通販番組を見て電話で3万円のダイエット器具を購入したが、気が変わったので返品したい。特定商取引法に基づくクーリング・オフの適用はどうなるか。</div>
+        </div>
+        <ul class="options-list">
+            <li>ア．購入金額が3,000円以上なので、8日以内なら無条件でクーリング・オフができる。</li>
+            <li>イ．通信販売には法律上のクーリング・オフ制度はなく、業者が定めた返品特約に従う。</li>
+            <li>ウ．電話で申し込んでいるため「電話勧誘販売」となり、20日間のクーリング・オフができる。</li>
+            <li>エ．通信販売であっても、未開封であればいつでも法律に基づき無条件で返品できる。</li>
+        </ul>
+        <button class="ans-btn" onclick="toggleAns('ans3')">答えと解説を見る</button>
+        <div class="explanation-box" id="ans3">
+            <div class="ans-title">正解：イ．通信販売には法律上のクーリング・オフ制度はなく…</div>
+            <p>テレビ、雑誌、インターネットなどの「通信販売」は、消費者が自ら進んで選んで購入するため、不意打ち性がありません。そのため、法律による無条件解約（クーリング・オフ）の規定はなく、サイトや番組が提示している「返品特約（返品ルールの有無や条件）」に従うことになります。</p>
+        </div>
+    </div>
+
+    <div class="quiz-item" id="q4">
+        <div class="quiz-header">
+            <input type="checkbox" class="custom-checkbox" onclick="toggleComplete('q4')">
+            <div class="question-text">【問4】「購入した新品の電気カーペットの内部回路の欠陥により、突然発火して絨毯が焦げ、足にやけどを負った」という場合、製造者の過失の有無に関わらず、損害賠償を直接請求できる根拠となる法律はどれか。</div>
+        </div>
+        <ul class="options-list">
+            <li>ア．特定商取引に関する法律</li>
+            <li>イ．製造物責任法（PL法）</li>
+            <li>ウ．消費者契約法</li>
+            <li>エ．消費者基本法</li>
+        </ul>
+        <button class="ans-btn" onclick="toggleAns('ans4')">答えと解説を見る</button>
+        <div class="explanation-box" id="ans4">
+            <div class="ans-title">正解：イ．製造物責任法（PL法）</div>
+            <p>引き渡された「モノ（製造物）」の欠陥によって、生命や身体、財産に損害を受けた場合に、メーカー側の過失を消費者が証明しなくても損害賠償を請求できる法律です。強引な「売り方」を規制する特定商取引法としっかり区別しましょう。</p>
+        </div>
+    </div>
+
+    <div class="quiz-item" id="q5">
+        <div class="quiz-header">
+            <input type="checkbox" class="custom-checkbox" onclick="toggleComplete('q5')">
+            <div class="question-text">【問5】幼児に絵本の読み聞かせを行う際、子どもの想像力を引き出し、物語に集中させるための正しい配慮はどれか。</div>
+        </div>
+        <ul class="options-list">
+            <li>ア．子どもに絵本を持たせ、自分で行きたいペースでページをめくらせる。</li>
+            <li>イ．登場人物になりきるため、声色をできるだけ大げさに変えて芝居のように読む。</li>
+            <li>ウ．大人が絵本をしっかり持ち、見やすい位置で、子どもの反応を見ながら語りかけるように読む。</li>
+            <li>エ．まだ文字が読めない幼児に対しては、文章は読まずに絵だけを高速で見せる。</li>
+        </ul>
+        <button class="ans-btn" onclick="toggleAns('ans5')">答えと解説を見る</button>
+        <div class="explanation-box" id="ans5">
+            <div class="ans-title">正解：ウ．大人が絵本をしっかり持ち、見やすい位置で…</div>
+            <p>絵本の読み聞かせは、大人がしっかりと本を固定して見やすい位置で提示するのが基本です（子どもに持たせると集中が切れます）。また、大げさすぎる声色の変化は、子ども自身の自由な想像力を邪魔してしまうため避けるべきとされています。</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>しっかりと内容を復習して、明日の期末テストで満点を目指しましょう！</p>
+    </footer>
+</div>
+
+<script>
+    // 答えと解説の表示・非表示切り替え
+    function toggleAns(id) {
+        const box = document.getElementById(id);
+        box.classList.toggle('show');
+        
+        // ボタンのテキスト変更
+        const btn = box.previousElementSibling;
+        if (box.classList.contains('show')) {
+            btn.textContent = '解説を閉じる';
+        } else {
+            btn.textContent = '答えと解説を見る';
+        }
+    }
+
+    // チェックボックスの状態に合わせてスタイルを変更
+    function toggleComplete(id) {
+        const item = document.getElementById(id);
+        item.classList.toggle('completed');
+    }
+</script>
+
+</body>
+</html>
